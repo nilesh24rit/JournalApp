@@ -1,0 +1,30 @@
+spring:
+  profiles:
+    active: production or development 
+
+  mail:
+    host: host@email.com
+    port: XXX
+    username: yourmail@email.com
+    password: XXXX XXXX XXXX XXXX
+    properties:
+      mail:
+        SMTP:
+          auth: true
+          STARTTLS:
+            enable: true
+
+  data:
+    mongodb:
+      uri: mongodb uri
+      database: DB Name
+      auto-index-creation: true
+    redis:
+      host: redis.host
+      port: XXXX
+      password: XXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+weather:
+  api:
+    key: Weather API key
+
