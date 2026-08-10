@@ -24,6 +24,42 @@ spring:
       port: XXXX
       password: XXXXXXXXXXXXXXXXXXXXXXXXXXX
 
+  kafka:
+    bootstrap-servers: your-confluent-bootstrap-server:9092
+
+    client-id: journaling-app-kafka-client
+
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+
+    consumer:
+      group-id: journaling-app-consumer
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+
+      properties:
+        spring:
+          json:
+            trusted:
+              packages: com.nilesh.JournalingApp.Entity
+
+    properties:
+      security:
+        protocol: SASL_SSL
+
+      sasl:
+        mechanism: PLAIN
+        jaas:
+          config: >-
+            org.apache.kafka.common.security.plain.PlainLoginModule required
+            username='YOUR_KAFKA_API_KEY'
+            password='YOUR_KAFKA_API_SECRET';
+
+      session:
+        timeout:
+          ms: 45000
+
 weather:
   api:
     key: Weather API key
