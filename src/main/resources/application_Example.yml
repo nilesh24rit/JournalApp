@@ -1,26 +1,28 @@
 spring:
   profiles:
-    active: production or development 
+    active: production
 
   mail:
-    host: host@email.com
-    port: XXX
-    username: yourmail@email.com
+    host: smtp.gmail.com
+    port: 587
+    username: yourmail@gmail.com
     password: XXXX XXXX XXXX XXXX
+
     properties:
       mail:
-        SMTP:
+        smtp:
           auth: true
-          STARTTLS:
+          starttls:
             enable: true
 
   data:
     mongodb:
-      uri: mongodb uri
-      database: DB Name
+      uri: mongodb://your-mongodb-uri
+      database: your-database-name
       auto-index-creation: true
+
     redis:
-      host: redis.host
+      host: your-redis-host
       port: XXXX
       password: XXXXXXXXXXXXXXXXXXXXXXXXXXX
 
@@ -31,12 +33,12 @@ spring:
 
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
-      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
 
     consumer:
       group-id: journaling-app-consumer
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
 
       properties:
         spring:
@@ -62,5 +64,4 @@ spring:
 
 weather:
   api:
-    key: Weather API key
-
+    key: YOUR_WEATHER_API_KEY

@@ -6,7 +6,9 @@ import com.nilesh.JournalingApp.Entity.User;
 import com.nilesh.JournalingApp.Repository.UserRepositoryImpl;
 import com.nilesh.JournalingApp.Service.EmailService;
 import com.nilesh.JournalingApp.enums.Sentiment;
+import com.nilesh.JournalingApp.model.SentimentData;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -26,17 +28,17 @@ public class UserSchedular {
     @Autowired
     private UserRepositoryImpl userRepositoryimpl;
 
-
     @Autowired
     private AppCache appCache;
 
-    @Scheduled(cron = "0 0 9 * * SUN")
-    public void fetchUsersAndSendSamMil() {
+    @Autowired
+    private KafkaTemplate<String, SentimentData> kafkaTemplate;
 
+    @Scheduled(cron = "0 * * * * *")
+    public void fetchUsersAndSendSamMil() {
         List<User> users = userRepositoryimpl.getUsersforSA();
 
         for (User user : users) {
-
             List<JournalEntry> journalEntries = user.getJournalEntries();
 
             List<Sentiment> sentiments = journalEntries.stream()
@@ -71,9 +73,21 @@ public class UserSchedular {
                         "Sentiment for last 7 days",
                         mostFrequentSentiment.toString()
                 );
+
+                SentimentData sentimentData = SentimentData.builder()
+                        .email(user.getEmail())
+                        .sentiment("Sentiment for last 7 days: " + mostFrequentSentiment)
+                        .build();
+
+                kafkaTemplate.send(
+                        "weekly-sentiments",
+                        sentimentData.getEmail(),
+                        sentimentData
+                );
             }
         }
     }
+
     @Scheduled(cron = "0 */5 * * * *")
     public void clearAppCache() {
         appCache.init();
