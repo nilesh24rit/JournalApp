@@ -65,3 +65,5 @@ spring:
 weather:
   api:
     key: YOUR_WEATHER_API_KEY
+
+SECRET_KEY: YOUR_SECRET_KEY_OF_JWTUtil
