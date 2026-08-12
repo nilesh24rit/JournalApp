@@ -12,8 +12,8 @@ target/
 .settings
 .springBeans
 .sts4-cache
-*.yml
-!src/main/resources/application_Example.yml
+#*.yml
+#!src/main/resources/application_Example.yml
 *.log
 ### IntelliJ IDEA ###
 .idea
