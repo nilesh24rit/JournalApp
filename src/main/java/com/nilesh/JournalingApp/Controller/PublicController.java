@@ -3,6 +3,7 @@ package com.nilesh.JournalingApp.Controller;
 import com.nilesh.JournalingApp.Entity.User;
 import com.nilesh.JournalingApp.Service.UserService;
 import com.nilesh.JournalingApp.Utils.JWTUtil;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -16,6 +17,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/public")
+@Tag(name="Public APIs", description = "Signup and Login")
 public class PublicController {
 
     @Autowired
