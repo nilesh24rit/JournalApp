@@ -49,6 +49,13 @@ spring:
       session.timeout.ms: 45000
 
     client-id: ccloud-springboot-client
+  security:
+    oauth2:
+          client:
+            registration:
+              google:
+                client-id: ${GOOGLE_CLIENT_ID}
+                client-secret: ${GOOGLE_CLIENT_SECRET}
 
 weather:
   api:

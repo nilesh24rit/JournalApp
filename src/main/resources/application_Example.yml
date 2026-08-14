@@ -67,3 +67,12 @@ weather:
     key: YOUR_WEATHER_API_KEY
 
 SECRET_KEY: YOUR_SECRET_KEY_OF_JWTUtil
+
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: YOUR_GOOGLE_CLIENT_ID
+            client-secret: YOUR_GOOGLE_CLIENT_SECRET
