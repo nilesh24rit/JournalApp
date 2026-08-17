@@ -2,9 +2,6 @@
 
 A production-grade **Spring Boot** backend for a journaling application — users log daily entries, get weekly AI-style sentiment summaries mailed to them, and admins can manage the platform. Built with security, event-driven architecture, and cloud deployment in mind.
 
-🔗 **Live API:** [journalapp-production-1986.up.railway.app](https://journalapp-production-1986.up.railway.app)
-📄 **API Docs (Swagger):** `/swagger-ui/index.html` on the deployed server
-
 ---
 
 ## ✨ Features
@@ -154,8 +151,6 @@ weather:
 
 SECRET_KEY: YOUR_SECRET_KEY_OF_JWTUtil
 ```
-
-> ⚠️ Never commit real credentials. Keep `application.yml` in `.gitignore` and only version-control the `_Example` file.
 
 ### Run locally
 
