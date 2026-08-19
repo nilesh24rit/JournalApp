@@ -1,6 +1,7 @@
 # 📓 JournalApp
 
 A production-grade **Spring Boot** backend for a journaling application — users log daily entries, get weekly AI-style sentiment summaries mailed to them, and admins can manage the platform. Built with security, event-driven architecture, and cloud deployment in mind.
+Live link:- journalapp-production-1986.up.railway.app
 
 ---
 
